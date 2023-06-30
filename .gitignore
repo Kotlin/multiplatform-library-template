@@ -1,0 +1,6 @@
+/.idea/
+/build/
+/.gradle/
+/convention-plugins/.gradle/
+/convention-plugins/build/
+.envrc
