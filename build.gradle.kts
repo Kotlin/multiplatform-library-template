@@ -1,10 +1,11 @@
 plugins {
     kotlin("multiplatform") version "1.8.22"
-    id("com.android.library") version "7.4.1"
+    id("com.android.library")
+    id("convention.publication")
 }
 
-group = "me.user"
-version = "1.0-SNAPSHOT"
+group = "com.github.asm0dey"
+version = "0.0.1-SNAPSHOT"
 
 repositories {
     google()
@@ -49,7 +50,7 @@ kotlin {
 }
 
 android {
-    namespace = "me.user.library"
+    namespace = "com.github.asm0dey.dummylib"
     compileSdk = 33
     defaultConfig {
         minSdk = 24

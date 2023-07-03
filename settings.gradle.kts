@@ -12,5 +12,5 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "dummylib-kmm"
-
+rootProject.name = "dummylib-multiplatform"
+includeBuild("convention-plugins")
