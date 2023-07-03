@@ -9,18 +9,12 @@ plugins {
     signing
 }
 
-ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
-ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
-ext["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE")
-ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
-ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
-
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-fun getExtraString(name: String) = ext[name]?.toString()
-
+val ossrhUsername by extra { System.getenv("secrets.OSSRH_USERNAME") }
+val ossrhPassword by extra { System.getenv("secrets.OSSRH_PASSWORD") }
 publishing {
     // Configure maven central repository
     repositories {
@@ -28,8 +22,8 @@ publishing {
             name = "sonatype"
             setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
             credentials {
-                username = getExtraString("ossrhUsername")
-                password = getExtraString("ossrhPassword")
+                username = ossrhUsername
+                password = ossrhPassword
             }
         }
     }
@@ -41,8 +35,8 @@ publishing {
 
         // Provide artifacts information requited by Maven Central
         pom {
-            name.set("MPP Sample library")
-            description.set("Sample Kotlin Multiplatform library (jvm + ios + js) test")
+            name.set("Dummy Kotlin Multiplatform library")
+            description.set("Dummy library to test deployment to Maven Central")
             url.set("https://github.com/asm0dey/dummylib-multiplatform")
 
             licenses {
@@ -59,16 +53,16 @@ publishing {
                 }
             }
             scm {
-                url.set("https://github.com/<your-github-repo>/mpp-sample-lib")
+                url.set("https://github.com/asm0dey/dummylib-multiplatform")
             }
         }
     }
 }
-extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 // Signing artifacts. Signing.* extra properties values will be used
+val gpgKeyId by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_ID") }
+val gpgKey by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY") }
+val gpgKeyPassword by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_PASSWORD") }
 signing {
-    setRequired({
-        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
-    })
+    useInMemoryPgpKeys(gpgKeyId, gpgKey, gpgKeyPassword)
     sign(publishing.publications)
 }
