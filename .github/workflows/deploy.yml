@@ -5,7 +5,7 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Deploy to central
 
 on: workflow_dispatch
 
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  deploy:
 
     runs-on: macos-latest
 
