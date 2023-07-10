@@ -2,12 +2,13 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.`maven-publish`
 import org.gradle.kotlin.dsl.signing
-import java.util.*
 
 plugins {
     `maven-publish`
     signing
+    id("io.github.gradle-nexus.publish-plugin")
 }
+
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
@@ -15,20 +16,20 @@ val javadocJar by tasks.registering(Jar::class) {
 
 val ossrhUsername by extra { System.getenv("secrets.OSSRH_USERNAME") }
 val ossrhPassword by extra { System.getenv("secrets.OSSRH_PASSWORD") }
-publishing {
+nexusPublishing {
     // Configure maven central repository
     repositories {
-        maven {
-            name = "sonatype"
-            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
+        sonatype {
+            username.set(ossrhUsername)
+            password.set(ossrhPassword)
         }
     }
 
+
     // Configure all publications
+}
+
+publishing {
     publications.withType<MavenPublication> {
         // Stub javadoc.jar artifact
         artifact(javadocJar.get())
@@ -58,7 +59,7 @@ publishing {
         }
     }
 }
-// Signing artifacts. Signing.* extra properties values will be used
+
 val gpgKeyId by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_ID") }
 val gpgKey by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY") }
 val gpgKeyPassword by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_PASSWORD") }

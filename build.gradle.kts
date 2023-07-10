@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
     kotlin("multiplatform") version "1.8.22"
     id("com.android.library")
@@ -12,7 +14,9 @@ repositories {
     mavenCentral()
 }
 
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    targetHierarchy.default()
     jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
@@ -29,23 +33,19 @@ kotlin {
             }
         }
     }
+    iosSimulatorArm64() {
+        binaries {
+            framework {
+                baseName = "library"
+            }
+        }
+    }
     sourceSets {
-        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting
-        val androidMain by getting
-        val androidUnitTest by getting {
-            dependencies {
-                implementation("junit:junit:4.13.2")
-            }
-        }
-        val iosArm64Main by getting
-        val iosArm64Test by getting
     }
 }
 
