@@ -14,15 +14,10 @@ val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-val ossrhUsername by extra { System.getenv("secrets.OSSRH_USERNAME") }
-val ossrhPassword by extra { System.getenv("secrets.OSSRH_PASSWORD") }
 nexusPublishing {
     // Configure maven central repository
     repositories {
-        sonatype {
-            username.set(ossrhUsername)
-            password.set(ossrhPassword)
-        }
+        sonatype()
     }
 
 
