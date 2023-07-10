@@ -40,6 +40,7 @@ kotlin {
             }
         }
     }
+    linuxX64()
     sourceSets {
         val commonTest by getting {
             dependencies {
