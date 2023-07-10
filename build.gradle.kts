@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.asm0dey"
-version = "0.0.1"
+version = "0.0.1.1"
 
 repositories {
     google()
@@ -25,7 +25,9 @@ kotlin {
             useJUnitPlatform()
         }
     }
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
     iosArm64 {
         binaries {
             framework {
