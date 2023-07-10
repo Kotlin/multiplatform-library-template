@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.asm0dey"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 repositories {
     google()
