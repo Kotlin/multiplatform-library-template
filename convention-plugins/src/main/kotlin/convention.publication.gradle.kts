@@ -64,6 +64,6 @@ val gpgKeyId by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_ID") }
 val gpgKey by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY") }
 val gpgKeyPassword by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_PASSWORD") }
 signing {
-    useInMemoryPgpKeys(gpgKeyId, gpgKey, gpgKeyPassword)
+    useGpgCmd()
     sign(publishing.publications)
 }

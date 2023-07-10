@@ -14,10 +14,14 @@ permissions:
 
 jobs:
   deploy:
-
     runs-on: macos-latest
-
     steps:
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v5
+      with:
+        gpg_private_key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+        passphrase: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
@@ -28,7 +32,10 @@ jobs:
       uses: gradle/gradle-build-action@bde650d6f1426615a60165575bc9cdad3e54d975
       with:
         arguments: build check
-    - name: Build with Gradle
+    - name: Gradle publish
       uses: gradle/gradle-build-action@bde650d6f1426615a60165575bc9cdad3e54d975
       with:
-        arguments: publishAllPublicationsToSonatypeRepository
+        arguments: |
+          publishAllPublicationsToSonatypeRepository
+          -Psigning.gnupg.passphrase=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
+          -Psigning.gnupg.keyName=${{secrets.OSSRH_GPG_SECRET_KEY_ID}}
