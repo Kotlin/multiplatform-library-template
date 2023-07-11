@@ -17,7 +17,7 @@ It has only one function: generate the [Fibonacci sequence](https://en.wikipedia
     1. If you don't need an Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
 1. - [ ] Edit [build targets you need](library/build.gradle.kts#L9-L21)
 
-At this stage you given you have everything setup to work with Kotlin Multiplatform the project shoud be buildable (but you might need to provide actual starting values for platforms you need).
+At this stage you have everything setup to work with Kotlin Multiplatform the project should be buildable (but you might need to provide actual starting values for platforms you need).
 
 ## How do I make it build on GitHub Actions?
 
@@ -45,9 +45,9 @@ The most part of the job is already automated for you. However, deployment to Ma
     gh secret set OSSRH_GPG_SECRET_KEY_ID -a actions --body "<your key id>"
     gh secret set OSSRH_GPG_SECRET_KEY_PASSWORD -a actions --body "<your key password>"
     gh secret set OSSRH_PASSWORD -a actions --body "<your sonatype account password>"
-    gh secret set OSSRH_GPG_SECRET_KEOSSRH_USERNAMEY_ID -a actions --body "<your sonatype account username>"
+    gh secret set OSSRH_USERNAME -a actions --body "<your sonatype account username>"
     ```
-    1. Or via interface in `Seetings` → `Secrets and Variables` → `Actions` same variables as in 1.
+    1. Or via interface in `Settings` → `Secrets and Variables` → `Actions` same variables as in 1.
 1. - [ ] Edit deployment pom parameters in [`module.publication.gradle.kts`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L25-L44)
 1. - [ ] Edit deploy targets in [`deploy.yml`](.github/workflows/deploy.yml#L23-L36)
 1. - [ ] Call deployment manually when ready [in Actions](../../actions/workflows/deploy.yml) → `Run Workflow`
