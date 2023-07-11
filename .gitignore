@@ -1,6 +1,10 @@
-/.idea/
-/build/
-/.gradle/
-/convention-plugins/.gradle/
-/convention-plugins/build/
-.envrc
+*.iml
+.gradle
+.idea
+.DS_Store
+build
+captures
+.externalNativeBuild
+.cxx
+local.properties
+xcuserdata
