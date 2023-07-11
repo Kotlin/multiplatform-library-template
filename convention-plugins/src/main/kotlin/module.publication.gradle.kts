@@ -1,30 +1,21 @@
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.`maven-publish`
-import org.gradle.kotlin.dsl.signing
 
 plugins {
     `maven-publish`
     signing
-    id("io.github.gradle-nexus.publish-plugin")
 }
 
+group = "com.github.asm0dey.dummylib"
+version = "0.0.1"
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-nexusPublishing {
-    // Configure maven central repository
-    repositories {
-        sonatype()
-    }
-
-
-    // Configure all publications
-}
-
 publishing {
+    // Configure all publications
     publications.withType<MavenPublication> {
         // Stub javadoc.jar artifact
         artifact(javadocJar.get())
@@ -55,10 +46,12 @@ publishing {
     }
 }
 
-val gpgKeyId by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_ID") }
-val gpgKey by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY") }
-val gpgKeyPassword by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_PASSWORD") }
+val gpgKeyId by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_ID") ?: "" }
+val gpgKey by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY") ?: "" }
+val gpgKeyPassword by extra { System.getenv("secrets.OSSRH_GPG_SECRET_KEY_PASSWORD") ?: "" }
 signing {
-    useGpgCmd()
-    sign(publishing.publications)
+    if (gpgKeyId.isNotEmpty()) {
+        useGpgCmd()
+        sign(publishing.publications)
+    }
 }

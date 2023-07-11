@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("convention-plugins")
     repositories {
         google()
         gradlePluginPortal()
@@ -10,9 +9,13 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         google()
+        gradlePluginPortal()
         mavenCentral()
     }
-}
 
-rootProject.name = "dummylib-multiplatform"
-include(":library")
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
+}
