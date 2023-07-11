@@ -52,5 +52,3 @@ The most part of the job is already automated for you. However, deployment to Ma
 1. - [ ] Edit deploy targets in [`deploy.yml`](.github/workflows/deploy.yml#L23-L36)
 1. - [ ] Call deployment manually when ready [in Actions](../../actions/workflows/deploy.yml) → `Run Workflow`
 1. - [ ] When you see in your account on https://oss.sonatype.org that everything is fine you can release your staging repositories and add target `releaseSonatypeStagingRepository` to `deploy.yml` [after this line](.github/workflows/deploy.yml#L60). This way artifacts will be published to central automatically when tests pass.
-
-
