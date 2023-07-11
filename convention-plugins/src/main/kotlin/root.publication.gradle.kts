@@ -1,6 +1,10 @@
 plugins {
-    id("module.publication")
     id("io.github.gradle-nexus.publish-plugin")
+}
+
+allprojects {
+    group = "com.github.asm0dey.dummylib"
+    version = "0.0.1"
 }
 
 nexusPublishing {

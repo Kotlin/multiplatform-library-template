@@ -7,9 +7,6 @@ plugins {
     signing
 }
 
-group = "com.github.asm0dey.dummylib"
-version = "0.0.1"
-
 publishing {
     // Configure all publications
     publications.withType<MavenPublication> {
