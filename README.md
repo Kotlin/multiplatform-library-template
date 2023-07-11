@@ -11,7 +11,7 @@ It has only one function: generate the [Fibonacci sequence](https://en.wikipedia
 ## How do I build it?
 
 1. - [x] Clone this repository ot just [use it as template](https://github.com/asm0dey/dummylib-multiplatform/generate)
-1. - [ ] Edit project name in [`settings.gradle.kts`](settings.gradle.kts#L17)
+1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
 1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
     1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too
     1. If you don't need an Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
