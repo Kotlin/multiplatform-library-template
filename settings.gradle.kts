@@ -1,16 +1,22 @@
 pluginManagement {
+    includeBuild("convention-plugins")
     repositories {
-        google()
-        gradlePluginPortal()
-        mavenCentral()
-    }
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.namespace == "com.android") {
-                useModule("com.android.tools.build:gradle:7.4.1")
+        google {
+            mavenContent {
+                releasesOnly()
             }
         }
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 rootProject.name = "dummylib-multiplatform"
-includeBuild("convention-plugins")
+include(":library")
