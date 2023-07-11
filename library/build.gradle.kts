@@ -20,11 +20,17 @@ kotlin {
     iosSimulatorArm64()
     linuxX64()
 
-    sourceSets.commonMain.get().dependencies {
-        //put your multiplatform dependencies here
-    }
-    sourceSets.commonTest.get().dependencies {
-        implementation(libs.kotlin.test)
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                //put your multiplatform dependencies here
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
     }
 }
 

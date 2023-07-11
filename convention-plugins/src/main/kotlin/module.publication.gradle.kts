@@ -19,7 +19,7 @@ publishing {
             archiveAppendix.set(this@withType.name)
         })
 
-        // Provide artifacts information requited by Maven Central
+        // Provide artifacts information required by Maven Central
         pom {
             name.set("Dummy Kotlin Multiplatform library")
             description.set("Dummy library to test deployment to Maven Central")

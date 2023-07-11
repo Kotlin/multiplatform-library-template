@@ -1,11 +1,7 @@
 pluginManagement {
     includeBuild("convention-plugins")
     repositories {
-        google {
-            mavenContent {
-                releasesOnly()
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
