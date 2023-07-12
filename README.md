@@ -33,7 +33,7 @@ The most part of the job is already automated for you. However, deployment to Ma
 1. - [ ] [Create an issue](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134) to create new project for you
 1. - [ ] You will have to prove that you own your desired namespace
 1. - [ ] Create a GPG key with `gpg --gen-key`, use the same email address you used to sign up to the Sonatype Jira
-1. - [ ] Find your key id in output of the previous command looking like `<your key id>`
+1. - [ ] Find your key id in output of the previous command looking like `D89FAAEB4CECAFD199A2F5E612C6F735F7A9A519`
 1. - [ ] Upload your key to a keyserver, for example 
     ```bash
     gpg --send-keys --keyserver keyserver.ubuntu.com "<your key id>"
