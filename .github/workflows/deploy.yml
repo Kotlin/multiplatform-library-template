@@ -28,6 +28,8 @@ jobs:
             os: ubuntu-latest
           - target: publishLinuxX64PublicationToSonatypeRepository
             os: ubuntu-latest
+          - target: publishKotlinMultiplatformPublicationToSonatypeRepository
+            os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
@@ -54,8 +56,8 @@ jobs:
         arguments: |
           ${{ matrix.target }}
           closeSonatypeStagingRepository
-          -Psigning.gnupg.passphrase=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
-          -Psigning.gnupg.keyName=${{secrets.OSSRH_GPG_SECRET_KEY_ID}}
-          -PsonatypeUsername=${{secrets.OSSRH_USERNAME}}
-          -PsonatypePassword=${{secrets.OSSRH_PASSWORD}}
+          -Psigning.gnupg.passphrase='${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}'
+          -Psigning.gnupg.keyName='${{secrets.OSSRH_GPG_SECRET_KEY_ID}}'
+          -PsonatypeUsername='${{secrets.OSSRH_USERNAME}}'
+          -PsonatypePassword='${{secrets.OSSRH_PASSWORD}}'
 

@@ -41,7 +41,7 @@ The most part of the job is already automated for you. However, deployment to Ma
 1. - [ ] Now you should create secrets available to your GitHub Actions
     1. via `gh` command
     ```bash
-    gh secret set OSSRH_GPG_SECRET_KEY -a actions --body "$(gpg --export --armor "<your key id>")"
+    gh secret set OSSRH_GPG_SECRET_KEY -a actions --body "$(gpg --export-secret-key --armor "<your key id>")"
     gh secret set OSSRH_GPG_SECRET_KEY_ID -a actions --body "<your key id>"
     gh secret set OSSRH_GPG_SECRET_KEY_PASSWORD -a actions --body "<your key password>"
     gh secret set OSSRH_PASSWORD -a actions --body "<your sonatype account password>"
