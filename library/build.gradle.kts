@@ -35,7 +35,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.github.asm0dey.dummylib"
+    namespace = "org.jetbrains.kotlinx.multiplatform-library-template"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

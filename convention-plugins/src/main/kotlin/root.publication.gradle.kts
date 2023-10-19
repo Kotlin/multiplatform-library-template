@@ -3,7 +3,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.github.asm0dey.dummylib"
+    group = "org.jetbrains.kotlinx.multiplatform-library-template"
     version = "0.0.1"
 }
 

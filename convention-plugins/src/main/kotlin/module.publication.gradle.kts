@@ -18,9 +18,9 @@ publishing {
 
         // Provide artifacts information required by Maven Central
         pom {
-            name.set("Dummy Kotlin Multiplatform library")
+            name.set("Kotlin Multiplatform library template")
             description.set("Dummy library to test deployment to Maven Central")
-            url.set("https://github.com/asm0dey/dummylib-multiplatform")
+            url.set("https://github.com/Kotlin/multiplatform-library-template")
 
             licenses {
                 license {
@@ -30,13 +30,14 @@ publishing {
             }
             developers {
                 developer {
-                    id.set("asm0dey")
-                    name.set("Pasha Finkelshteyn")
-                    email.set("asm0dey@jetbrains.com")
+                    id.set("JetBrains")
+                    name.set("JetBrains Team")
+                    organization.set("JetBrains")
+                    organizationUrl.set("https://www.jetbrains.com")
                 }
             }
             scm {
-                url.set("https://github.com/asm0dey/dummylib-multiplatform")
+                url.set("https://github.com/Kotlin/multiplatform-library-template")
             }
         }
     }

@@ -2,15 +2,17 @@
 
 ## What is it?
 
-It's the barebones library project intended to quickly bootstrap a Kotlin Multiplatform library, that is deployable to Maven Central.
+It is the barebones library project intended to quickly bootstrap a Kotlin Multiplatform library, that is deployable to Maven Central.
 
 It has only one function: generate the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) starting from platform-provided numbers. Also, it has a test for each platform just to be sure that tests run.
 
-*Almost all links will work correctly in your own repository*
+Note that no other actions or tools usually required for the library development are set up, such as [tracking of backwards compatibility]
+(https://kotlinlang.org/docs/jvm-api-guidelines-backward-compatibility.html#tools-designed-to-enforce-backward-compatibility), explicit API mode,
+licensing, contribution guideline, code of conduct and others.
 
 ## How do I build it?
 
-1. - [x] Clone this repository ot just [use it as template](https://github.com/asm0dey/dummylib-multiplatform/generate)
+1. - [x] Clone this repository ot just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
 1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
 1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
     1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too

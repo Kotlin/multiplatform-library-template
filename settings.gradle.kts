@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "dummylib-multiplatform"
+rootProject.name = "multiplatform-library-template"
 include(":library")
