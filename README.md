@@ -1,3 +1,5 @@
+[![official project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 # Multiplatform library template
 
 ## What is it?
