@@ -16,7 +16,7 @@ licensing, contribution guideline, code of conduct and others.
 
 1. - [x] Clone this repository or just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
 1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
-1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
+1. - [ ] Edit `groupId` and `version` in [`root.publication.gradle.kts`](convention-plugins/src/main/kotlin/root.publication.gradle.kts)
     1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too
     1. If you don't need an Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
 1. - [ ] Edit [build targets you need](library/build.gradle.kts#L9-L21)
