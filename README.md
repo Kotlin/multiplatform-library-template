@@ -10,15 +10,15 @@ It has only one function: generate the [Fibonacci sequence](https://en.wikipedia
 
 Note that no other actions or tools usually required for the library development are set up, such as [tracking of backwards compatibility]
 (https://kotlinlang.org/docs/jvm-api-guidelines-backward-compatibility.html#tools-designed-to-enforce-backward-compatibility), explicit API mode,
-licensing, contribution guideline, code of conduct and others.
+licensing, contribution guidelines, code of conduct and others.
 
 ## How do I build it?
 
-1. - [x] Clone this repository ot just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
+1. - [x] Clone this repository or just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
 1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
 1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
     1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too
-    1. If you don't need an Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
+    1. If you don't need Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
 1. - [ ] Edit [build targets you need](library/build.gradle.kts#L9-L21)
 
 At this stage, you have everything set to work with Kotlin Multiplatform. The project should be buildable (but you might need to provide actual starting values for the platforms you need).
