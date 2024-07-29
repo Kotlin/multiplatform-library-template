@@ -14,7 +14,7 @@ licensing, contribution guideline, code of conduct and others.
 
 ## How do I build it?
 
-1. - [x] Clone this repository ot just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
+1. - [x] Clone this repository or just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
 1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
 1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
     1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too
@@ -25,7 +25,7 @@ At this stage, you have everything set to work with Kotlin Multiplatform. The pr
 
 ## How do I make it build on GitHub Actions?
 
-To make it work on GitHub actions, you need to update the [`matrix` section in `gradle.yml`](.github/workflows/gradle.yml#L25-L34). If you didn't change platforms in `build.gradle.kts` you don't need to touch anything. But still read it to understand how it works.
+To make it work on GitHub Actions, you need to update the [`matrix` section in `gradle.yml`](.github/workflows/gradle.yml#L25-L34). If you didn't change platforms in `build.gradle.kts` you don't need to touch anything. But still read it to understand how it works.
 
 Also, currently, it only runs tests, but you can change this behaviour as you wish by modifying `matrix` and the Gradle [build command](.github/workflows/gradle.yml#L52)
 
