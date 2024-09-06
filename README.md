@@ -14,12 +14,12 @@ licensing, contribution guideline, code of conduct and others.
 
 ## How do I build it?
 
-1. - [x] Clone this repository ot just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
-1. - [ ] Edit library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
-1. - [ ] Edit [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
-    1. If you need the Android support update namespace [there](library/build.gradle.kts#L38) too
-    1. If you don't need an Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
-1. - [ ] Edit [build targets you need](library/build.gradle.kts#L9-L21)
+1. - [x] Clone this repository or just [use it as template](https://github.com/Kotlin/multiplatform-library-template/generate)
+1. - [ ] Edit the library module name and include it in [`settings.gradle.kts`](settings.gradle.kts#L18)
+1. - [ ] Edit the [`groupId` and `version`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L10-L11)
+    1. If you need Android support update the namespace [there](library/build.gradle.kts#L38) too
+    1. If you don't need Android support delete the [`android` section](library/build.gradle.kts#L37-L43)
+1. - [ ] Edit the [build targets you need](library/build.gradle.kts#L9-L21)
 
 At this stage, you have everything set to work with Kotlin Multiplatform. The project should be buildable (but you might need to provide actual starting values for the platforms you need).
 
@@ -36,9 +36,9 @@ The most part of the job is already automated for you. However, deployment to Ma
 1. - [ ] Create an account at [Sonatype issue tracker](https://issues.sonatype.org/secure/Signup!default.jspa)
 1. - [ ] [Create an issue](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134) to create new project for you
 1. - [ ] You will have to prove that you own your desired namespace
-1. - [ ] Create a GPG key with `gpg --gen-key`, use the same email address you used to sign up to the Sonatype Jira
-1. - [ ] Find your key id in the output of the previous command looking like `D89FAAEB4CECAFD199A2F5E612C6F735F7A9A519`
-1. - [ ] Upload your key to a keyserver, for example 
+1. - [ ] Create a GPG key with `gpg --gen-key` (use the same email address you used to sign up to the Sonatype Jira)
+1. - [ ] Find your key id in the output of the previous command (e.g. `D89FAAEB4CECAFD199A2F5E612C6F735F7A9A519`)
+1. - [ ] Upload your key to a keyserver, e.g.
     ```bash
     gpg --send-keys --keyserver keyserver.ubuntu.com "<your key id>"
     ```
@@ -51,7 +51,7 @@ The most part of the job is already automated for you. However, deployment to Ma
     gh secret set OSSRH_PASSWORD -a actions --body "<your sonatype account password>"
     gh secret set OSSRH_USERNAME -a actions --body "<your sonatype account username>"
     ```
-    1. Or via the interface in `Settings` → `Secrets and Variables` → `Actions`, same variables as in 1.
+    2. Or via the interface in `Settings` → `Secrets and Variables` → `Actions` with the same variables as in 1.
 1. - [ ] Edit deployment pom parameters in [`module.publication.gradle.kts`](convention-plugins/src/main/kotlin/module.publication.gradle.kts#L25-L44)
 1. - [ ] Edit deploy targets in [`deploy.yml`](.github/workflows/deploy.yml#L23-L36)
 1. - [ ] Call deployment manually when ready [in Actions](../../actions/workflows/deploy.yml) → `Run Workflow`
