@@ -52,7 +52,7 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates("io.github.kotlin", "fibonacci", "1.0.8")
+    coordinates("io.github.kotlin", "library", "1.0.0")
 
     pom {
         name = "My library"
