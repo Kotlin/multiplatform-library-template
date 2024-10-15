@@ -122,7 +122,7 @@ You will be asked for a passphrase to encrypt the key, which you have to repeat.
 Let’s take a look at the key we’ve created with the following command:
 
 ```bash
-gpg --list-keys` |
+gpg --list-keys
 ```
 
 The output will look something like this:
@@ -143,7 +143,7 @@ You need to [upload the public key to a keyserver](https://central.sonatype.org/
 Run the following command to upload your public key using `gpg`, **substituting your own keyid** in the parameters:
 
 ```bash
-gpg --keyserver keyserver.ubuntu.com --send-keys F175482952A225BFC4A07A715EE6B5F76620B385CE` |
+gpg --keyserver keyserver.ubuntu.com --send-keys F175482952A225BFC4A07A715EE6B5F76620B385CE
 ```
 
 #### Export your private key {#export-your-private-key}
@@ -151,7 +151,7 @@ gpg --keyserver keyserver.ubuntu.com --send-keys F175482952A225BFC4A07A715EE6B5F
 To let your Gradle project access your private key, you’ll need to export it to a file. Use the following command, **passing in your own keyid** as a parameter. You will be prompted to enter the passphrase you’ve used when creating the key.
 
 ```bash
-gpg --armor --export-secret-keys F175482952A225BFC4A07A715EE6B5F76620B385CE > key.gpg` |
+gpg --armor --export-secret-keys F175482952A225BFC4A07A715EE6B5F76620B385CE > key.gpg
 ```
 
 This will create a `key.gpg` file which contains your private key. Remember not to share this with anyone.
@@ -355,7 +355,7 @@ Also note that the library may be available for use before they are indexed on [
 There’s also another task available which both uploads and releases the artifacts automatically once the the deployment is verified, without having to manually release them on the website:
 
 ```bash
-./gradlew publishAndReleaseToMavenCentral` |
+./gradlew publishAndReleaseToMavenCentral
 ```
 
 **Et voilà, you have successfully published your library to Maven Central.**
