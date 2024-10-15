@@ -211,7 +211,7 @@ plugins {
 In the same file, add the following configuration. Customize all these values appropriately for your library.
 
 ```kotlin
-mavenPublishing {`
+mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
     
     signAllPublications()
