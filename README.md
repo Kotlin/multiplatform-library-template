@@ -363,6 +363,8 @@ There’s also another task available which both uploads and releases the artifa
 # Next steps
 - Share your library with the Kotlin Community in the `#feed` channel in the [Kotlin Slack](https://kotlinlang.slack.com/) (To sign up visit https://kotl.in/slack.)
 - Add [shield.io badges](https://shields.io/badges/maven-central-version) to your README.
+- Create a documentation site for your project using [Writerside](https://www.jetbrains.com/writerside/). 
+- Share API documentation for your project using [Dokka](https://kotl.in/dokka).
 - Add [Renovate](https://docs.renovatebot.com/) to automatically update dependencies.
 
 # Other resources
