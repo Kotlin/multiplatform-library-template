@@ -2,14 +2,14 @@ import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-group = "io.github.kotlin"
-version = "1.0.0"
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.publish)
+    alias(libs.plugins.vanniktech.mavenPublish)
 }
+
+group = "io.github.kotlin"
+version = "1.0.0"
 
 kotlin {
     jvm()
@@ -52,7 +52,7 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates("io.github.kotlin", "library", "1.0.0")
+    coordinates(group.toString(), "library", version.toString())
 
     pom {
         name = "My library"
