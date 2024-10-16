@@ -5,12 +5,15 @@ import org.gradle.kotlin.dsl.`maven-publish`
 plugins {
     `maven-publish`
     signing
+    id("com.jfrog.artifactory")
 }
 
 publishing {
-    // Configure all publications
+    
     publications.withType<MavenPublication> {
-        // Stub javadoc.jar artifact
+        groupId = project.group as String
+        version = project.version as String
+
         artifact(tasks.register("${name}JavadocJar", Jar::class) {
             archiveClassifier.set("javadoc")
             archiveAppendix.set(this@withType.name)
@@ -47,5 +50,21 @@ signing {
     if (project.hasProperty("signing.gnupg.keyName")) {
         useGpgCmd()
         sign(publishing.publications)
+    }
+}
+
+
+artifactory {
+    setContextUrl(project.findProperty("artifactory_contextUrl") as String)
+    publish {
+        repository {
+            setRepoKey(project.findProperty("artifactory_snapshot_repo") as String)
+            setUsername(project.findProperty("artifactory_user") as String)
+            setPassword(project.findProperty("artifactory_password") as String)
+        }
+        defaults {
+            publications("kotlinMultiplatform", "androidRelease", "jvm")
+            setPublishArtifacts(false)
+        }
     }
 }
