@@ -52,8 +52,6 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "library", version.toString())
-
     pom {
         name = "My library"
         description = "A library."
