@@ -12,4 +12,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "jvm-library-template"
-include(":library")
+include(":fibonacci-core")
+include(":fibonacci-advanced")
+include(":fibonacci")
