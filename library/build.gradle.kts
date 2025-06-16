@@ -1,10 +1,7 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    kotlin("jvm")
     alias(libs.plugins.vanniktech.mavenPublish)
 }
 
@@ -12,26 +9,19 @@ group = "io.github.kotlin"
 version = "1.0.0"
 
 kotlin {
-    jvm()
-    androidTarget {
-        publishLibraryVariants("release")
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
         }
+        withJava()
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-    linuxX64()
-
     sourceSets {
-        val commonMain by getting {
+        val main by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                // JVM-spezifische Abhängigkeiten hier
             }
         }
-        val commonTest by getting {
+        val test by getting {
             dependencies {
                 implementation(libs.kotlin.test)
             }
@@ -39,28 +29,13 @@ kotlin {
     }
 }
 
-android {
-    namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-
     signAllPublications()
-
     coordinates(group.toString(), "library", version.toString())
-
     pom {
-        name = "My library"
-        description = "A library."
+        name = "My JVM library"
+        description = "A JVM library."
         inceptionYear = "2024"
         url = "https://github.com/kotlin/multiplatform-library-template/"
         licenses {

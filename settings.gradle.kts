@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -8,10 +7,9 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        google()
         mavenCentral()
     }
 }
 
-rootProject.name = "multiplatform-library-template"
+rootProject.name = "jvm-library-template"
 include(":library")
