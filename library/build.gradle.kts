@@ -8,25 +8,16 @@ plugins {
 group = "io.github.kotlin"
 version = "1.0.0"
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(libs.kotlin.test)
+}
+
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
-        withJava()
-    }
-    sourceSets {
-        val main by getting {
-            dependencies {
-                // JVM-spezifische Abhängigkeiten hier
-            }
-        }
-        val test by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-            }
-        }
-    }
+    jvmToolchain(11)
 }
 
 mavenPublishing {
