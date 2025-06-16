@@ -8,10 +8,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+
     }
 }
 
-rootProject.name = "jvm-library-template"
+rootProject.name = "fibonacci"
 include(":fibonacci-core")
 include(":fibonacci-advanced")
 include(":fibonacci")
