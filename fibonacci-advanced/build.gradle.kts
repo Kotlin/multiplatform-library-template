@@ -1,7 +1,9 @@
 plugins {
-    kotlin("jvm")
-    alias(libs.plugins.vanniktech.mavenPublish)
+    `kotlin-dsl`
+    id("com.vanniktech.maven.publish")
 }
+
+apply<ProjectModulePlugin>()
 
 dependencies {
     implementation(project(":fibonacci-core"))

@@ -1,12 +1,11 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
-    kotlin("jvm")
-    alias(libs.plugins.vanniktech.mavenPublish)
+    `kotlin-dsl`
+    id("com.vanniktech.maven.publish")
 }
 
+apply<ProjectModulePlugin>()
+
 dependencies {
-    // testImplementation(libs.kotlin.test) zentral in root
 }
 
 mavenPublishing {
