@@ -35,8 +35,8 @@ class ProjectModulePlugin : Plugin<Project> {
         }
 
         project.extensions.configure<MavenPublishBaseExtension> {
-            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-            signAllPublications()
+            // publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+            // signAllPublications()
             pom {
                 inceptionYear.set("2024")
                 url.set("https://github.com/kotlin/multiplatform-library-template/")

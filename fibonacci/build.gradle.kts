@@ -1,9 +1,8 @@
 plugins {
+    id("build-logic")
     `kotlin-dsl`
     id("com.vanniktech.maven.publish")
 }
-
-apply<ProjectModulePlugin>()
 
 dependencies {
     api(project(":fibonacci-core"))

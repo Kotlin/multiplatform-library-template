@@ -1,3 +1,8 @@
+plugins {
+    `kotlin-dsl`
+}
+
+group = "io.github.kotlin.fibonacci.buildlogic"
 version = "1.0.0"
 
 repositories {
@@ -7,5 +12,5 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.21")
-    implementation("com.vanniktech:gradle-maven-publish-plugin:0.32.0")
+    implementation(libs.plugins.vanniktech.mavenPublish)
 }

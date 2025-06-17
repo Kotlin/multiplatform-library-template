@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.21"
-vanniktech-mavenPublish = "0.32.0"
+vanniktech-mavenPublish = "0.32.1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

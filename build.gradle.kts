@@ -1,6 +1,4 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.vanniktech.mavenPublish) apply false
     id("java-library")
 }
 
@@ -8,4 +6,8 @@ allprojects {
     repositories {
         mavenCentral()
     }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_21
 }
