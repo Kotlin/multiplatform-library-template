@@ -1,6 +1,6 @@
 plugins {
-    id("build-logic")
     `kotlin-dsl`
+    id("project.library-conventions")
     id("com.vanniktech.maven.publish")
 }
 

@@ -1,13 +1,8 @@
 plugins {
-    id("java-library")
+    `kotlin-dsl`
 }
 
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_21
+tasks.withType<Wrapper>().configureEach {
+    distributionType = Wrapper.DistributionType.BIN
+    gradleVersion = "8.7"
 }
