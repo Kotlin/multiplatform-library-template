@@ -15,3 +15,4 @@ dependencies {
 fun fromCatalog(dependency: Provider<PluginDependency>): String {
     return "${dependency.get().pluginId}:${dependency.get().version}"
 }
+

@@ -1,10 +1,7 @@
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.api.publish.PublishingExtension
-import org.gradle.kotlin.dsl.*
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+
+apply<ProjectModulePlugin>()
 
 class ProjectModulePlugin : Plugin<Project> {
     override fun apply(project: Project) {
@@ -21,8 +18,12 @@ class ProjectModulePlugin : Plugin<Project> {
             jvmToolchain(21)
         }
 
-        project.dependencies {
-            "testImplementation"("org.jetbrains.kotlin:kotlin-test")
+        project.extensions.configure<JavaPluginExtension> {
+            withSourcesJar()
+            withJavadocJar()
+
+            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_11
         }
 
         project.extensions.configure<PublishingExtension> {

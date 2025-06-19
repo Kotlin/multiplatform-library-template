@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
     id("project.library-conventions")
-    id("com.vanniktech.maven.publish")
+    id("com.vanniktech.maven.publish") version "0.32.0"
 }
 
 dependencies {
@@ -12,7 +12,7 @@ dependencies {
 mavenPublishing {
     coordinates(group.toString(), "fibonacci", version.toString())
     pom {
-        name = "Fibonacci Umbrella"
+        name = "Fibonacci (Aggregator)"
         description = "Umbrella-Paket für alle Fibonacci-Module."
     }
 }

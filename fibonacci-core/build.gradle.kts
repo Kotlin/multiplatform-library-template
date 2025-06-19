@@ -1,10 +1,11 @@
 plugins {
     `kotlin-dsl`
     id("project.library-conventions")
-    id("com.vanniktech.maven.publish")
+    id("com.vanniktech.maven.publish") version "0.32.0"
 }
 
 dependencies {
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
 mavenPublishing {
