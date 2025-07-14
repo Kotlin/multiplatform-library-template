@@ -14,7 +14,7 @@ Note that no other actions or tools usually required for the library development
 
 This guide describes the steps of publishing a library built with Kotlin Multiplatform to the [Maven Central repository](https://central.sonatype.com/). To publish your library, you’ll need to:
 
-* Set up credentials, including an account on Maven Central and a PGP key to use for signing.
+* Set up credentials, including an account on Maven Central.
 * Configure the publishing plugin in your library’s project.
 * Provide your credentials to the publishing plugin so it can sign and upload your artifacts.
 * Run the publication task, either locally or using continuous integration.
@@ -22,7 +22,7 @@ This guide describes the steps of publishing a library built with Kotlin Multipl
 This guide assumes that you are:
 
 - Creating an open-source library.
-- Using macOS or Linux. If you are a Windows user, use [GnuPG or Gpg4win](https://gnupg.org/download) to generate a key pair.
+- Using macOS, Windows or Linux.
 - Either not registered on Maven Central yet, or have an existing account that’s suitable for [publishing to the Central Portal](https://central.sonatype.org/publish-ea/publish-ea-guide/) (created after March 12th, 2024, or migrated to the Central Portal by their support).
 - Publishing your library in a GitHub repository.
 - Using GitHub Actions for continuous integration.
@@ -33,13 +33,32 @@ Throughout this guide, we’ll use the [https://github.com/kotlin-hands-on/fibon
 
 ### Prepare accounts and credentials
 
-#### Register a namespace
+#### Register a namespace on Central Portal
 
-Artifacts published to Maven repositories are identified by their coordinates, for example `com.example:library:1.0.0`. These coordinates are made up of three parts, separated by colons: the `groupId`, `artifactId`, and `version`.
+Before publishing artifacts to Maven Central, you must register a **namespace** through the [Central Portal](https://central.sonatype.com/), Sonatype’s new unified publishing interface.
 
-As a first step for publishing to Maven Central, you’ll need to have a verified namespace. The `groupId` of the artifacts you publish will have to start with the name of your verified namespace. For example, if you register the `com.example` namespace, you’ll be able to publish artifacts with the `groupId` set to `com.example` or `com.example.libraryname`.
+Each artifact you publish is identified by coordinates in the format: `groupId:artifactId:version`. Your `groupId` must match the namespace you register and verify.
 
-To get started with publishing to Maven Central, sign in (or create a new account) on the [Maven Central](https://central.sonatype.com/) portal. Once signed in, navigate to [Namespaces](https://central.sonatype.com/publishing/namespaces) under your profile, and click the Add Namespace button. Here, you can register a namespace for your artifacts, either based on your GitHub account or a domain name that you own.
+**Steps to register a namespace:**
+
+1. **Sign in or create an account** on the [Central Portal](https://central.sonatype.com/).
+2. Navigate to [Publishing > Namespaces](https://central.sonatype.com/publishing/namespaces).
+3. Click **"Add Namespace"**.
+4. Choose a namespace to register:
+
+    * You can **link a GitHub organization** (recommended).
+    * Or you can **verify ownership of a domain name**.
+
+Once verified, you’ll be allowed to publish artifacts with `groupId`s that start with the registered namespace.
+For example, if you register `com.example`, you may publish artifacts like:
+
+```
+com.example:core-lib:1.0.0  
+com.example.utils:helper-lib:1.0.0
+```
+
+> [!NOTE]
+> Only namespaces registered and verified through the Central Portal are permitted for publishing. Legacy onboarding via Jira (OSSRH) is no longer supported.
 
 **For a GitHub repository**
 Using your GitHub account to create a namespace is a good option if you don’t own a domain name to use for publication. To create a namespace based on your GitHub account:
@@ -56,117 +75,6 @@ To use a domain name that you own as your namespace:
 2. Copy the Verification Key displayed.
 3. Create a new DNS TXT record with the verification key as its contents. See [Maven Central’s FAQ](https://central.sonatype.org/faq/how-to-set-txt-record/) for more information on how to do this with various domain registrars.
 4. Navigate back to Maven Central, and click on the Verify Namespace button. After verification succeeds you can delete the TXT record you’ve created.
-
-#### Generate a Key Pair
-
-Artifacts published to Maven Central [must be signed with a PGP signature](https://central.sonatype.org/publish/requirements/gpg/), which allows users to validate the origin of artifacts.
-
-To get started with signing, you’ll need to generate a key pair:
-
-* The **private key** is used to sign your artifacts, and should never be shared with others.
-* The **public key** can be used by others to validate the signature of the artifacts, and should be published.
-
-The `gpg` tool that can manage signatures for you is available from [their website](https://gnupg.org/download/index.html). You can also install it using package managers such as [Homebrew](https://brew.sh/):
-
-```bash 
-brew install gpg
-```
-Generate a key pair with the following command, and fill in the required details when prompted.
-
-```bash
-gpg --full-generate-key
-```
-
-Choose the recommended defaults for the type of key to be created. You can leave these selections empty and press Enter to accept the default values.
-
-> [!NOTE]
-> At the time of writing, this is `ECC (sign and encrypt)` with `Curve 25519`. Older versions of `gpg` might default to `RSA` with a `3072` bit key size.
-
-Next, you’ll be prompted to set the expiration of the key. If you choose to create a key that automatically expires after a set amount of time, you’ll need to [extend its validity](https://central.sonatype.org/publish/requirements/gpg/#dealing-with-expired-keys) when it expires.
-
-You will be asked for your real name, email, and a comment. You can leave the comment empty.
-
-```text
-Please select what kind of key you want:
-    (1) RSA and RSA
-    (2) DSA and Elgamal
-    (3) DSA (sign only)
-    (4) RSA (sign only)
-    (9) ECC (sign and encrypt) *default*
-    (10) ECC (sign only)
-    (14) Existing key from card
-Your selection? 9
-
-Please select which elliptic curve you want:
-    (1) Curve 25519 *default*
-    (4) NIST P-384
-    (6) Brainpool P-256
-Your selection? 1
-
-Please specify how long the key should be valid.
-    0 = key does not expire
-    <n>  = key expires in n days
-    <n>w = key expires in n weeks
-    <n>m = key expires in n months
-    <n>y = key expires in n years
-Key is valid for? (0) 0
-Key does not expire at all
-
-Is this correct? (y/N) y
-GnuPG needs to construct a user ID to identify your key.
-```
-
-You will be asked for a passphrase to encrypt the key, which you have to repeat. Keep this passphrase stored securely and privately. You’ll be using it later to access the private key.
-
-Let’s take a look at the key we’ve created with the following command:
-
-```bash
-gpg --list-keys
-```
-
-The output will look something like this:
-
-```text
-pub   ed25519 2024-10-06 [SC]
-      F175482952A225BFC4A07A715EE6B5F76620B385CE
-uid   [ultimate] Your name <your email address>
-      sub   cv25519 2024-10-06 [E]
-```
-
-You’ll need to use the long alphanumerical identifier of your key displayed here in the following steps.
-
-#### Upload the public key
-
-You need to [upload the public key to a keyserver](https://central.sonatype.org/publish/requirements/gpg/#distributing-your-public-key) for it to be accepted by Maven Central. There are multiple available keyservers, we’ll use `keyserver.ubuntu.com` as a default choice.
-
-Run the following command to upload your public key using `gpg`, **substituting your own keyid** in the parameters:
-
-```bash
-gpg --keyserver keyserver.ubuntu.com --send-keys F175482952A225BFC4A07A715EE6B5F76620B385CE
-```
-
-#### Export your private key
-
-To let your Gradle project access your private key, you’ll need to export it to a file. Use the following command, **passing in your own keyid** as a parameter. You will be prompted to enter the passphrase you’ve used when creating the key.
-
-```bash
-gpg --armor --export-secret-keys F175482952A225BFC4A07A715EE6B5F76620B385CE > key.gpg
-```
-
-This will create a `key.gpg` file which contains your private key.
-
-> [!CAUTION]
-> Never share a private key with anyone.
-
-If you check the contents of the file, you should see contents similar to this:
-
-```text
------BEGIN PGP PRIVATE KEY BLOCK-----
-lQdGBGby2X4BEACvFj7cxScsaBpjty60ehgB6xRmt8ayt+zmgB8p+z8njF7m2XiN
-...
-bpD/h7ZI7FC0Db2uCU4CYdZoQVl0MNNC1Yr56Pa68qucadJhY0sFNiB63KrBUoiO 
------END PGP PRIVATE KEY BLOCK-----
-```
 
 #### Generate the user token
 
@@ -200,7 +108,7 @@ android {
 
 #### Set up the publishing plugin
 
-This guide uses [vanniktech/gradle-maven-publish-plugin](https://github.com/vanniktech/gradle-maven-publish-plugin) to help with publications to Maven Central. You can read more about the advantages of the plugin [here](https://vanniktech.github.io/gradle-maven-publish-plugin/#advantages-over-maven-publish). See the [plugin’s documentation](https://vanniktech.github.io/gradle-maven-publish-plugin/central/) to learn more about its usage and available configuration options.
+This guide uses [vanniktech/gradle-maven-publish-plugin](https://github.com/vanniktech/gradle-maven-publish-plugin) to help with publications to Maven Central. This plugin now deploys to the Central Portal Publisher. You can read more about the advantages of the plugin [here](https://vanniktech.github.io/gradle-maven-publish-plugin/#advantages-over-maven-publish). See the [plugin’s documentation](https://vanniktech.github.io/gradle-maven-publish-plugin/central/) to learn more about its usage and available configuration options.
 
 To add the plugin to your project, add the following line in the plugins block, in your library module’s `build.gradle.kts` file:
 
