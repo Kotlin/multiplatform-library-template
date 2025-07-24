@@ -1,4 +1,4 @@
-package io.github.kotlin.fibonacci
+package io.github.hesamedin.logger
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

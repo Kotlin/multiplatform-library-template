@@ -39,7 +39,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.openlane.logger"
+    namespace = group.toString()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
