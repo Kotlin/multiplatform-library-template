@@ -27,7 +27,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.squareup.okio)
             }
         }
         val commonTest by getting {

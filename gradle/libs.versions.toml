@@ -3,9 +3,13 @@ agp = "8.11.1"
 kotlin = "2.2.0"
 android-minSdk = "24"
 android-compileSdk = "36"
+kotlinx-datetime = "0.7.1"
+squareup-okio = "3.15.0"
 
 [libraries]
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+squareup-okio = { module = "com.squareup.okio:okio", version.ref = "squareup-okio" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
