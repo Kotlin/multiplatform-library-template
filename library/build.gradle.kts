@@ -11,7 +11,6 @@ group = "io.github.hesamedin"
 version = "0.1.0"
 
 kotlin {
-    jvm()
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -22,7 +21,6 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-    linuxX64()
 
     sourceSets {
         val commonMain by getting {
@@ -42,6 +40,7 @@ kotlin {
 android {
     namespace = group.toString()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
+    buildToolsVersion = "36.0.0"
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
