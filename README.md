@@ -30,7 +30,46 @@ The repository supports the following platforms:
 | Windows | No |
 
 ## How to use it?
-TBD
+
+### Dependencies
+ou can download the library from Maven Central repository at https://central.sonatype.com/search?q=io.github.hesamedin.
+Make sure to get the right build for your platform.
+
+### Configuration
+To use this library, you need to initialize it with platform-specific configurations, particularly for setting up the log file directory.
+
+#### Android Configuration
+The library requires the Android `Context` to determine a suitable directory (e.g., cache directory) for storing log files. You should initialize the library, typically in your `Application` class or using a dependency injection framework, by providing a path provider function.
+```kotlin
+    class MyApplication : Application() {
+        override fun onCreate() {
+            super.onCreate()
+
+            // Simply call the initializer
+            AndroidLoggerInitializer.init(this)
+
+            // Now you can use the logger
+            MultiplatformLogger.log("MyApplication: Logger has been initialized.")
+        }
+    }
+```
+
+#### iOS Configuration
+Update the AppDelegate to initialize the logger with a directory path for storing log files. This is typically done in the `application:didFinishLaunchingWithOptions:` method.
+```swift
+import UIKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Simply call the initializer
+        MPLoggerIOSInitializer.init()
+
+        // Now you can use the logger
+        MultiplatformLogger.log("MyApplication: Logger has been initialized.")
+    }
+}
+```
 
 ## How to contribute?
 TBD
