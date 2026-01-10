@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ienground-kmp-utils"
+rootProject.name = "ienground-kmp-library-template"
 include(":library")
 include(":example")
 include(":example:composeApp")

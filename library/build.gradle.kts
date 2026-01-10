@@ -7,13 +7,13 @@ plugins {
     alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.github.kotlin"
+group = "zone.ien.lib.template"
 version = "1.0.0"
 
 kotlin {
     jvm()
     androidLibrary {
-        namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
+        namespace = "zone.ien.lib.template"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
@@ -57,8 +57,8 @@ mavenPublishing {
     pom {
         name = "My library"
         description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        inceptionYear = "2026"
+        url = "https://github.com/ienground/ienground-kmp-library-template"
         licenses {
             license {
                 name = "XXX"
@@ -74,9 +74,9 @@ mavenPublishing {
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/ienground/ienground-kmp-library-template.git"
+            connection = "scm:git:https://github.com/ienground/ienground-kmp-library-template.git"
+            developerConnection = "scm:git:https://github.com/ienground/ienground-kmp-library-template.git"
         }
     }
 }
