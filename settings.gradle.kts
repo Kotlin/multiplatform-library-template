@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "ienground-kmp-utils"
 include(":library")
+include(":example")
+include(":example:composeApp")
+include(":example:iosApp")
