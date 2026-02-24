@@ -1,4 +1,3 @@
-import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -23,15 +22,10 @@ kotlin {
             sourceSetTreeName = "test"
         }
 
-        compilations.configureEach {
-            compilerOptions.configure {
-                jvmTarget.set(
-                    JvmTarget.JVM_11
-                )
-            }
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
         }
     }
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
     linuxX64()

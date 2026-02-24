@@ -1,9 +1,9 @@
 [versions]
-agp = "8.13.0"
-kotlin = "2.2.20"
+agp = "9.0.1"
+kotlin = "2.3.10"
 android-minSdk = "24"
 android-compileSdk = "36"
-vanniktechMavenPublish = "0.34.0"
+vanniktechMavenPublish = "0.36.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
